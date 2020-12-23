@@ -32,7 +32,7 @@ class Board:
 
   # Returns the number of occupied neighbours of the given field.
   def NumOccupiedNeighbours(self, x, y):
-    print("\n\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\\n\nZaczynam uruchamiac dla parametrow: x=%i y=%i plansza:\n%s\n" % (x,y,self))
+    # print("\n\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\\n\nZaczynam uruchamiac dla parametrow: x=%i y=%i plansza:\n%s\n" % (x,y,self))
     seats_occupied = 0
     list_of_x = range(-1, 2)
     list_of_y = range(-1, 2)
@@ -40,39 +40,26 @@ class Board:
       for col in list_of_x:
         if col == 0 and row == 0:
           continue
-          # ix = col
-          # iy = row
-        # print("dodaję do kolumny: ", col)
-        # print("dodaję do wiersza: ", row)
+
         if x+col < 0 or x+col >= self.width:
           continue
         if y+ row < 0 or y+row >= self.height:
           continue
-
-        while self.board[x+row][y+col] == ".":
-          # print("wewnątrz while'a dodaję do kolumny: ", col)
-          # print("wewnątrz while'a dodaję do wiersza: ", row)
-          if x+col >= 0 or x+col < self.width:
-            x += col
-          if y+ row >= 0 or y+row < self.height:
-            y += row
-
-          if self.board[y+row][x+col] == "#": 
-            print(x+col, y+row)
+        x_copy = x
+        y_copy = y
+        while (y_copy+row) >= 0 and (y_copy+row) < self.height and (x_copy+col) >= 0 and (x_copy+col) < self.width and self.board[y_copy+row][x_copy+col] == ".":
+          x_copy += col
+          y_copy += row
+        if (y_copy+row) >= 0 and (y_copy+row) < self.height and (x_copy+col) >= 0 and (x_copy+col) < self.width:
+          if self.board[y_copy+row][x_copy+col] == "#":
+            # print(y, x)
             seats_occupied += 1
 
-        if self.board[y][x] == "#":
-          print(y, x) 
-          seats_occupied += 1
-
-
-    print("Zwracam wynik: %i" % (seats_occupied, ))
-    print("----------------------------------------------")
+    # print("Zwracam wynik: %i" % (seats_occupied, ))
+    # print("----------------------------------------------")
     return seats_occupied
         
 
-    
-    
   # Returns a board after one round of resitting.
   def GetNextBoard(self):
     new_seatting_list = []
@@ -86,7 +73,7 @@ class Board:
           else:
             new_row.append(current_seat)
         elif current_seat == "#":
-          if self.NumOccupiedNeighbours(col, row) >= 4:
+          if self.NumOccupiedNeighbours(col, row) >= 5:
             new_row.append("L")
           else:
             new_row.append(current_seat)
@@ -114,7 +101,7 @@ class Board:
     numb_of_occupied_seats = 0
     for row in range(self.height):
       for col in range(self.width):
-        print(self.board[row][col])
+        # print(self.board[row][col])
         if self.board[row][col] == "#":
           numb_of_occupied_seats += 1
     
