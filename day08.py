@@ -26,7 +26,7 @@ def accumulator_counter(list_of_operations):
         if index in used_index:
             return accumulator
         operation = list_of_instructions[index]
-        print(operation)
+        # print(operation)
         used_index.append(index)
         if operation[0] == "acc":
             accumulator += int(operation[1])
@@ -36,12 +36,8 @@ def accumulator_counter(list_of_operations):
         elif operation[0] == "nop":
             index += 1
 
-        # print(i)
+print("accumulator, pierwsza: ",accumulator_counter(list_of_instructions))
 
-
-print(accumulator_counter(list_of_instructions))
-
-# Poniższe chwilowo daje zły wynik
 
 
 def accumulator_fixlist_counter(list_of_operations):
@@ -71,4 +67,4 @@ def accumulator_fixlist_counter(list_of_operations):
                 index += 1
 
 
-print(accumulator_fixlist_counter(list_of_instructions))
+print("accumulator, część druga: ", accumulator_fixlist_counter(list_of_instructions))

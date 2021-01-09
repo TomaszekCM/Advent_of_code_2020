@@ -81,7 +81,6 @@ class Board:
           new_row.append(current_seat)
       new_seatting_list.append(new_row)
     return Board(new_seatting_list)
-    # raise Exception("Napisz tresc tej funkcji panie Tomek!")
 
   # Returns True if the other board is equal to the specified board
   # and False if the board is different.
@@ -94,8 +93,6 @@ class Board:
           return False
     return True
 
-    # raise Exception("Napisz tresc tej funkcji panie Tomek!")
-
   # Returns the number of occupied fields.
   def GetNumOccupied(self):
     numb_of_occupied_seats = 0
@@ -107,7 +104,6 @@ class Board:
     
     return numb_of_occupied_seats
 
-    # raise Exception("Napisz tresc tej funkcji panie Tomek!")
   
 def FindStableBoard(initial_board):
   board = initial_board
